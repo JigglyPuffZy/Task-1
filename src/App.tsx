@@ -11,6 +11,7 @@ import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 import { ChatBot } from './components/ChatBot';
 import { AboutUs } from './components/AboutUs';
+import './responsive.css';
 
 export function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -36,9 +37,9 @@ export function App() {
   const toggleDarkMode = () => setDarkMode((d) => !d);
 
   return (
-    <div className={`flex flex-col min-h-screen w-full bg-white dark:bg-gray-950 transition-colors duration-300`}>
+    <div className={`flex flex-col min-h-screen w-full max-w-full overflow-x-hidden bg-white dark:bg-gray-950 transition-colors duration-300`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <main className="flex-grow">
+      <main className="flex-grow w-full">
         <HeroSection />
         <FeaturesSection />
         <WhatItIs />
