@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { MessageCircleIcon, XIcon, MinimizeIcon, SendIcon, BotIcon } from 'lucide-react';
 
 const GEMINI_PROXY_URL = 'https://server-task-cyzf.onrender.com/api/gemini';
 const GEMINI_STREAM_URL = 'https://server-task-cyzf.onrender.com/api/gemini/stream';
@@ -10,7 +11,10 @@ export const ChatBot: React.FC = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -25,12 +29,12 @@ export const ChatBot: React.FC = () => {
     setLoading(true);
     setError(null);
     
-          // Add a placeholder message for the bot response
-      setMessages(prev => [...prev, { from: 'bot', text: '' }]);
-      
-      // Track if we received any text
-      let hasReceivedText = false;
+    // Add a placeholder message for the bot response
+    setMessages(prev => [...prev, { from: 'bot', text: '' }]);
     
+    // Track if we received any text
+    let hasReceivedText = false;
+  
     try {
       const res = await fetch(GEMINI_STREAM_URL, {
         method: 'POST',
@@ -134,51 +138,142 @@ export const ChatBot: React.FC = () => {
     }
   };
 
-  return (
-    <div className="fixed bottom-6 right-6 w-80 max-w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg flex flex-col z-50 animate-fadeIn" style={{ minHeight: '400px' }}>
-      <div className="bg-orange-600 dark:bg-orange-500 text-white px-4 py-3 rounded-t-lg font-semibold flex items-center justify-between">
-        <span>ChatBot</span>
-      </div>
-      <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2 bg-gray-50 dark:bg-gray-800" style={{ maxHeight: '300px' }}>
-        {messages.map((msg, idx) => (
-          <div key={idx} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`px-3 py-2 rounded-lg text-sm ${msg.from === 'user' ? 'bg-orange-600 text-white dark:bg-orange-500 dark:text-gray-900' : 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-100'}`}>
-              {msg.text}
-            </div>
-          </div>
-        ))}
-        {loading && (
-          <div className="flex justify-start">
-            <div className="px-3 py-2 rounded-lg text-sm bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-100 flex items-center space-x-1">
-              <span>Gemini is typing</span>
-              <div className="flex space-x-1">
-                <div className="w-1 h-1 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-1 h-1 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-1 h-1 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-              </div>
-            </div>
-          </div>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
-      <form onSubmit={handleSend} className="p-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-b-lg flex">
-        <input
-          type="text"
-          className="flex-1 px-3 py-2 rounded-l border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 dark:bg-gray-800 dark:text-white"
-          placeholder="Type your message..."
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          disabled={loading}
-        />
+  const toggleChat = () => {
+    if (isMinimized) {
+      setIsMinimized(false);
+      setIsOpen(true);
+    } else if (isOpen) {
+      setIsOpen(false);
+      setIsMinimized(true);
+    } else {
+      setIsOpen(true);
+    }
+  };
+
+  const minimizeChat = () => {
+    setIsOpen(false);
+    setIsMinimized(true);
+  };
+
+  const closeChat = () => {
+    setIsOpen(false);
+    setIsMinimized(false);
+  };
+
+  // Minimized state - just the robot icon
+  if (isMinimized && !isOpen) {
+    return (
+      <div className="fixed bottom-6 right-6 z-50">
         <button
-          type="submit"
-          className="bg-orange-600 dark:bg-orange-500 text-white px-4 py-2 rounded-r hover:bg-orange-700 dark:hover:bg-orange-400 transition"
-          disabled={loading}
+          onClick={toggleChat}
+          className="group bg-orange-600 dark:bg-orange-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:bg-orange-700 dark:hover:bg-orange-400 animate-pulse-glow"
+          aria-label="Open ChatBot"
         >
-          Send
+          <BotIcon size={24} className="group-hover:animate-bounce transition-all duration-200" />
         </button>
-      </form>
-      {error && <div className="text-red-500 text-xs px-4 pb-2">{error}</div>}
+      </div>
+    );
+  }
+
+  // Full chat interface
+  if (isOpen) {
+    return (
+      <div className="fixed bottom-6 right-6 z-50 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-md xl:max-w-lg">
+        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl flex flex-col animate-scaleIn" style={{ minHeight: '400px', maxHeight: '600px' }}>
+          {/* Header */}
+          <div className="bg-gradient-to-r from-orange-600 to-orange-500 dark:from-orange-500 dark:to-orange-400 text-white px-4 py-3 rounded-t-xl font-semibold flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <BotIcon size={20} className="animate-pulse" />
+              <span>LOVATO Assistant</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={minimizeChat}
+                className="p-1 hover:bg-orange-700 dark:hover:bg-orange-600 rounded transition-colors duration-200"
+                aria-label="Minimize ChatBot"
+              >
+                <MinimizeIcon size={16} />
+              </button>
+              <button
+                onClick={closeChat}
+                className="p-1 hover:bg-orange-700 dark:hover:bg-orange-600 rounded transition-colors duration-200"
+                aria-label="Close ChatBot"
+              >
+                <XIcon size={16} />
+              </button>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 bg-gray-50 dark:bg-gray-800" style={{ minHeight: '300px', maxHeight: '400px' }}>
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm shadow-sm ${
+                  msg.from === 'user' 
+                    ? 'bg-orange-600 text-white dark:bg-orange-500 dark:text-gray-900 rounded-br-md' 
+                    : 'bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-600 rounded-bl-md'
+                }`}>
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+            {loading && (
+              <div className="flex justify-start">
+                <div className="max-w-[80%] px-4 py-2 rounded-2xl text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-600 rounded-bl-md shadow-sm flex items-center space-x-2">
+                  <span>Typing</span>
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                    <div className="w-2 h-2 bg-orange-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                    <div className="w-2 h-2 bg-orange-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Form */}
+          <form onSubmit={handleSend} className="p-3 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-b-xl">
+            <div className="flex gap-2">
+              <input
+                ref={inputRef}
+                type="text"
+                className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 dark:bg-gray-800 dark:text-white text-sm transition-all duration-200"
+                placeholder="Type your message..."
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                disabled={loading}
+              />
+              <button
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="bg-orange-600 dark:bg-orange-500 text-white p-2 rounded-lg hover:bg-orange-700 dark:hover:bg-orange-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
+                aria-label="Send Message"
+              >
+                <SendIcon size={16} />
+              </button>
+            </div>
+            {error && (
+              <div className="mt-2 text-red-500 text-xs bg-red-50 dark:bg-red-900/20 px-3 py-2 rounded-lg">
+                {error}
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // Default state - closed, show robot icon
+  return (
+    <div className="fixed bottom-6 right-6 z-50">
+      <button
+        onClick={toggleChat}
+        className="group bg-orange-600 dark:bg-orange-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:bg-orange-700 dark:hover:bg-orange-400 animate-pulse-glow"
+        aria-label="Open ChatBot"
+      >
+        <BotIcon size={24} className="group-hover:animate-bounce transition-all duration-200" />
+      </button>
     </div>
   );
 };

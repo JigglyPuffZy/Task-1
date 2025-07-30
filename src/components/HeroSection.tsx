@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Modal } from './Modal';
 import image1 from '../image 1.jpg';
-import { MailIcon, DownloadIcon } from 'lucide-react';
+import { MailIcon, DownloadIcon, ShieldIcon, ZapIcon, SettingsIcon } from 'lucide-react';
 
 export const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,35 +33,61 @@ export const HeroSection = () => {
               <span>& Changeover Switches</span>
               <span className="block h-2 mt-2 w-24 bg-orange-400 dark:bg-orange-600 rounded-full animate-underline" />
             </h1>
-            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-6">
-              Up to 1000A | Compact | UL98 Certified
-            </p>
-            <div className="flex flex-wrap gap-4">
+
+            {/* Key Benefits */}
+            <div className="flex flex-wrap gap-3 mb-6 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+              <div className="flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 px-3 py-2 rounded-full hover:bg-orange-200 dark:hover:bg-orange-800/50 transition-all duration-200 hover:scale-105 cursor-pointer group">
+                <ShieldIcon size={16} className="text-orange-600 dark:text-orange-400 group-hover:rotate-12 transition-transform duration-200" />
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">UL98 Certified</span>
+              </div>
+              <div className="flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 px-3 py-2 rounded-full hover:bg-orange-200 dark:hover:bg-orange-800/50 transition-all duration-200 hover:scale-105 cursor-pointer group">
+                <ZapIcon size={16} className="text-orange-600 dark:text-orange-400 group-hover:animate-pulse transition-all duration-200" />
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Up to 1000A</span>
+              </div>
+              <div className="flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 px-3 py-2 rounded-full hover:bg-orange-200 dark:hover:bg-orange-800/50 transition-all duration-200 hover:scale-105 cursor-pointer group">
+                <SettingsIcon size={16} className="text-orange-600 dark:text-orange-400 group-hover:rotate-180 transition-transform duration-500" />
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Compact Design</span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-4 animate-fadeIn" style={{ animationDelay: '0.4s' }}>
               <button
-                className="flex items-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-md hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-400 dark:text-gray-900 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 transform hover:-translate-y-1 hover:shadow-2xl hover:brightness-110 duration-200"
+                className="group flex items-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-400 dark:text-gray-900 transition-all duration-300 shadow-lg hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 transform hover:-translate-y-1 hover:scale-105"
                 onClick={() => setIsModalOpen(true)}
                 aria-label="Contact Sales"
               >
-                <MailIcon size={20} /> Contact Sales
+                <MailIcon size={20} className="group-hover:animate-bounce transition-all duration-200" /> 
+                Contact Sales
               </button>
               <button
-                className="flex items-center gap-2 border border-orange-600 text-orange-600 dark:border-orange-400 dark:text-orange-400 px-6 py-3 rounded-md hover:bg-orange-50 dark:hover:bg-gray-900 transition shadow focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 transform hover:-translate-y-1 hover:shadow-lg hover:brightness-110 duration-200"
+                className="group flex items-center gap-2 border-2 border-orange-600 text-orange-600 dark:border-orange-400 dark:text-orange-400 px-6 py-3 rounded-lg hover:bg-orange-600 hover:text-white dark:hover:bg-orange-400 dark:hover:text-gray-900 transition-all duration-300 shadow-md hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 transform hover:-translate-y-1 hover:scale-105"
                 onClick={() => setToast(true)}
                 aria-label="Download Brochure"
               >
-                <DownloadIcon size={20} /> Download Brochure
+                <DownloadIcon size={20} className="group-hover:animate-bounce transition-all duration-200" /> 
+                Download Brochure
               </button>
             </div>
           </div>
           <div className="md:w-1/2 flex justify-center animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-            <div className="relative">
-              {/* Glowing animated ring */}
+            <div className="relative group">
+              {/* Multiple glowing animated rings */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-full h-full rounded-full border-4 border-orange-300 dark:border-orange-900 opacity-60 animate-glow" />
+                <div className="absolute w-full h-full rounded-full border-2 border-orange-400 dark:border-orange-300 opacity-40 animate-ping" style={{ animationDelay: '1s' }} />
+                <div className="absolute w-full h-full rounded-full border border-orange-500 dark:border-orange-200 opacity-30 animate-pulse" style={{ animationDelay: '2s' }} />
               </div>
-              <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center w-full max-w-md aspect-square transition-transform hover:scale-105 animate-float">
-                <img src={image1} alt="Switch Disconnectors and Changeover Switches" className="object-contain w-full h-full" />
+              <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 flex items-center justify-center w-full max-w-md aspect-square transition-all duration-500 hover:scale-110 hover:rotate-2 animate-float group-hover:shadow-orange-500/25">
+                <img 
+                  src={image1} 
+                  alt="Switch Disconnectors and Changeover Switches" 
+                  className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-105" 
+                />
               </div>
+              {/* Floating particles */}
+              <div className="absolute -top-4 -right-4 w-3 h-3 bg-orange-400 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.5s' }} />
+              <div className="absolute -bottom-4 -left-4 w-2 h-2 bg-orange-300 rounded-full animate-bounce opacity-60" style={{ animationDelay: '1.5s' }} />
+              <div className="absolute top-1/2 -right-6 w-1 h-1 bg-orange-500 rounded-full animate-pulse opacity-60" style={{ animationDelay: '2.5s' }} />
             </div>
           </div>
         </div>

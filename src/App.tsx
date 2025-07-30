@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { FeaturesSection } from './components/FeaturesSection';
+import { WhatItIs } from './components/WhatItIs';
+import { WhatItDoes } from './components/WhatItDoes';
+import { WhyItMatters } from './components/WhyItMatters';
+import { TechnicalSpecs } from './components/TechnicalSpecs';
+import { QuoteRequest } from './components/QuoteRequest';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 import { ChatBot } from './components/ChatBot';
+import { AboutUs } from './components/AboutUs';
+
 export function App() {
   const [darkMode, setDarkMode] = useState(() => {
     // Try to use system preference or localStorage
@@ -34,6 +41,12 @@ export function App() {
       <main className="flex-grow">
         <HeroSection />
         <FeaturesSection />
+        <WhatItIs />
+        <WhatItDoes />
+        <WhyItMatters />
+        <TechnicalSpecs />
+        <AboutUs />
+        <QuoteRequest />
         <CTASection />
       </main>
       <Footer />

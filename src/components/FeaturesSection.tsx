@@ -8,32 +8,32 @@ export const FeaturesSection = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Feature Card 1 */}
-          <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-md transition">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4">
-              <BoltIcon size={24} className="text-orange-600 dark:text-orange-400" />
+          <div className="group bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-orange-300 dark:hover:border-orange-600">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <BoltIcon size={24} className="text-orange-600 dark:text-orange-400 group-hover:animate-pulse" />
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Instant Actuation</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">Instant Actuation</h3>
             <p className="text-gray-600 dark:text-gray-300">
               Instant actuation for AC-23A loads with direct or door-interlocked
               operation
             </p>
           </div>
           {/* Feature Card 2 */}
-          <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-md transition">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4">
-              <SettingsIcon size={24} className="text-orange-600 dark:text-orange-400" />
+          <div className="group bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-orange-300 dark:hover:border-orange-600">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <SettingsIcon size={24} className="text-orange-600 dark:text-orange-400 group-hover:rotate-180 transition-transform duration-500" />
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Modular Design</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">Modular Design</h3>
             <p className="text-gray-600 dark:text-gray-300">
               Modular 4-pole setup for maximum flexibility in your applications
             </p>
           </div>
           {/* Feature Card 3 */}
-          <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-md transition">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4">
-              <PackageIcon size={24} className="text-orange-600 dark:text-orange-400" />
+          <div className="group bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-orange-300 dark:hover:border-orange-600">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <PackageIcon size={24} className="text-orange-600 dark:text-orange-400 group-hover:animate-bounce" />
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">
               Compact & Customizable
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -42,33 +42,33 @@ export const FeaturesSection = () => {
             </p>
           </div>
           {/* Feature Card 4 */}
-          <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-md transition">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4">
-              <ShieldIcon size={24} className="text-orange-600 dark:text-orange-400" />
+          <div className="group bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-orange-300 dark:hover:border-orange-600">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <ShieldIcon size={24} className="text-orange-600 dark:text-orange-400 group-hover:animate-pulse" />
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Safety & Protection</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">Safety & Protection</h3>
             <p className="text-gray-600 dark:text-gray-300">
               IP66, IP69K, NEMA 4X protection with padlock fittings and
               UL508A-compliant interlock override
             </p>
           </div>
           {/* Feature Card 5 */}
-          <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-md transition">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4">
-              <SettingsIcon size={24} className="text-orange-600 dark:text-orange-400" />
+          <div className="group bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-orange-300 dark:hover:border-orange-600">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <SettingsIcon size={24} className="text-orange-600 dark:text-orange-400 group-hover:rotate-90 transition-transform duration-300" />
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Versatile Mounting</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">Versatile Mounting</h3>
             <p className="text-gray-600 dark:text-gray-300">
               Any mounting position with visible contact status window for easy
               monitoring
             </p>
           </div>
           {/* Feature Card 6 */}
-          <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-md transition">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4">
-              <PackageIcon size={24} className="text-orange-600 dark:text-orange-400" />
+          <div className="group bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-orange-300 dark:hover:border-orange-600">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <PackageIcon size={24} className="text-orange-600 dark:text-orange-400 group-hover:animate-bounce" />
             </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Accessories</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">Accessories</h3>
             <p className="text-gray-600 dark:text-gray-300">
               Snap-on parts, extension shafts, covers, and screw-mount terminals
               available
