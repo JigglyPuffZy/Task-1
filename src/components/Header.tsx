@@ -23,10 +23,10 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
     <header className="bg-white/90 dark:bg-gray-950/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-orange-100 dark:border-gray-800 transition-all">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 py-2 sm:py-3 flex justify-between items-center max-w-full">
         <div className="flex items-center min-w-0">
-          <img 
-            src="/Logo_lovatoelectric.png" 
-            alt="LOVATO Electric Logo" 
-            className="h-6 xs:h-7 sm:h-8 md:h-10 lg:h-12 max-w-full drop-shadow-md transition-transform duration-200 hover:scale-105 hover:drop-shadow-xl cursor-pointer" 
+          <img
+            src="/Logo_lovatoelectric.png"
+            alt="LOVATO Electric Logo"
+            className="h-6 xs:h-7 sm:h-8 md:h-10 lg:h-12 max-w-full drop-shadow-md transition-transform duration-200 hover:scale-105 hover:drop-shadow-xl cursor-pointer"
           />
         </div>
 
@@ -38,13 +38,17 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
             <ChevronDownIcon size={12} className="ml-1 group-hover:rotate-180 transition-transform" />
           </div>
           <nav className="flex space-x-3 xl:space-x-4">
-            {['Products', 'Solutions', 'Support'].map((label) => (
-              <a key={label} href="#" className="relative text-gray-700 dark:text-gray-200 font-semibold text-xs xl:text-sm px-1 py-0.5 group">
+            {["Products", "Solutions", "Support"].map((label) => (
+              <a
+                key={label}
+                href="#"
+                className="relative text-gray-700 dark:text-gray-200 font-semibold text-xs xl:text-sm px-1 py-0.5 group"
+              >
                 {label}
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full transition-all duration-300 group-hover:w-full group-hover:h-1"></span>
               </a>
             ))}
-            <button 
+            <button
               onClick={() => scrollToSection('about')}
               className="relative text-gray-700 dark:text-gray-200 font-semibold text-xs xl:text-sm px-1 py-0.5 group"
             >
@@ -65,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button 
+        <button
           className="lg:hidden text-gray-700 dark:text-gray-200 p-2 hover:bg-orange-50 dark:hover:bg-gray-800 rounded-lg"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle Mobile Menu"
@@ -77,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
       {/* Mobile Navigation Panel */}
       <div className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-500 ${isMenuOpen ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'}`}>
         {/* Backdrop */}
-        <div 
+        <div
           className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
           onClick={closeMenu}
         />
@@ -107,9 +111,9 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
           </div>
 
           {/* Nav Links */}
-          <nav className="p-6 space-y-3">
-            {['Products', 'Solutions', 'Support'].map((item) => (
-              <a 
+          <nav className="p-6 space-y-3 animate-fade-in-up">
+            {["Products", "Solutions", "Support"].map((item) => (
+              <a
                 key={item}
                 href="#"
                 className="block text-lg font-semibold text-gray-700 dark:text-gray-200 p-4 rounded-xl hover:bg-orange-50 dark:hover:bg-gray-900 transition-all"
@@ -118,7 +122,7 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
                 {item}
               </a>
             ))}
-            <button 
+            <button
               onClick={() => scrollToSection('about')}
               className="w-full text-left text-lg font-semibold text-gray-700 dark:text-gray-200 p-4 rounded-xl hover:bg-orange-50 dark:hover:bg-gray-900"
             >
@@ -128,7 +132,7 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
 
           {/* Actions */}
           <div className="p-6 space-y-4 border-t border-gray-200 dark:border-gray-800">
-            <button 
+            <button
               className="w-full flex items-center justify-center gap-2 bg-orange-600 text-white py-3 rounded-xl shadow hover:shadow-lg hover:bg-orange-700 transition"
               onClick={closeMenu}
             >
@@ -141,13 +145,13 @@ export const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
             >
               {darkMode ? (
                 <>
-                  <SunIcon size={20} className="text-orange-400" />
-                  Light Mode
+                  <SunIcon size={20} className="text-orange-400 animate-spin-slow" />
+                  <span className="text-gray-700 dark:text-gray-200">Light Mode</span>
                 </>
               ) : (
                 <>
-                  <MoonIcon size={20} className="text-gray-600" />
-                  Dark Mode
+                  <MoonIcon size={20} className="text-gray-700 dark:text-gray-200" />
+                  <span className="text-gray-700 dark:text-gray-200">Dark Mode</span>
                 </>
               )}
             </button>
